@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clima</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Consultar Clima</h1>
+
+        <label for="cidade">Escolha uma cidade:</label>
+        <input type="text" id="cidade" placeholder="Ex: Rio de Janeiro">
+        <button onclick="consultarClima()">Consultar</button>
+
+        <div id="dados-clima"></div>
+
+        <h2>Histórico de Clima</h2>
+        <button onclick="verHistoricoClima()">Ver Histórico</button>
+        <ul id="dados-historico"></ul>
+    </div>
+
+    <script>
+        async function consultarClima() {
+            const cidade = document.getElementById("cidade").value;
+            const resposta = await fetch(`http://localhost:5000/clima?cidade=${cidade}`);
+            const dados = await resposta.json();
+
+            if (dados.erro) {
+                document.getElementById("dados-clima").innerHTML = `<p>${dados.erro}</p>`;
+            } else {
+                document.getElementById("dados-clima").innerHTML = `
+                    <p><strong>Cidade:</strong> ${dados.cidade}</p>
+                    <p><strong>Temperatura:</strong> ${dados.temperatura}°C</p>
+                    <p><strong>Descrição:</strong> ${dados.descricao}</p>
+                `;
+            }
+        }
+
+        async function verHistoricoClima() {
+    const resposta = await fetch('http://localhost:5000/historico');
+    const dados = await resposta.json();
+
+    const listaHistorico = document.getElementById("dados-historico");
+    const botaoHistorico = document.querySelector("button[onclick='verHistoricoClima()']"); // Seleciona o botão
+
+    // Verifica se a lista está visível ou oculta
+    if (listaHistorico.style.display === "none") {
+        listaHistorico.style.display = "block"; // Mostra a lista
+
+        listaHistorico.innerHTML = ''; // Limpa a lista antes de adicionar novos itens
+        if (dados.mensagem) {
+            listaHistorico.innerHTML = `<li>${dados.mensagem}</li>`;
+        } else {
+            dados.forEach(clima => {
+                const itemLista = document.createElement("li");
+                itemLista.innerHTML = `${clima.cidade} - ${clima.temperatura}°C - ${clima.descricao}`;
+                listaHistorico.appendChild(itemLista);
+            });
+        }
+
+        // Muda o texto do botão para "Fechar"
+        botaoHistorico.innerHTML = "Fechar";
+    } else {
+        listaHistorico.style.display = "none"; // Oculta a lista
+
+        // Muda o texto do botão de volta para "Ver Histórico"
+        botaoHistorico.innerHTML = "Ver Histórico";
+    }
+}
+
+    </script>
+</body>
+</html>

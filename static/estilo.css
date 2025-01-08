@@ -1,0 +1,125 @@
+/* Corpo da página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #a1c4fd, #c2e9fb); /* Gradiente suave de céu */
+    background-attachment: fixed; /* Garante que o fundo não se mova ao rolar */
+    margin: 0;
+    padding: 0;
+    min-height: 100%; /* Garante que o corpo tenha altura mínima de 100% */
+    overflow-x: hidden; /* Evita rolagem horizontal */
+}
+
+/* Container principal */
+.container {
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo transparente com leve brancura */
+    border-radius: 20px; /* Bordas arredondadas */
+    padding: 60px 70px;
+    width: 350px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    margin: 20px auto; /* Margem automática para centralizar */
+    position: relative;
+}
+
+/* Título principal */
+h1 {
+    font-size: 2em;
+    color: #2e8b57; /* Cor verde suave */
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Input para cidade */
+input[type="text"] {
+    width: 80%; /* Largura do input reduzida para não ocupar toda a largura */
+    padding: 15px;
+    margin: 15px auto; /* Centraliza o input horizontalmente */
+    border-radius: 15px;
+    border: 2px solid #66ccff;
+    background-color: #f9f9f9;
+    font-size: 1.1em;
+    display: block; /* Garante que o input ocupe uma linha inteira */
+    text-align: center; /* Centraliza o texto dentro do campo */
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #3399ff;
+    background-color: #ffffff;
+}
+
+
+/* Estilo do botão */
+button {
+    background-color: #3399ff; /* Azul claro */
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-top: 10px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #2e8b57; /* Verde suave */
+    transform: scale(1.05); /* Aumenta um pouco o botão */
+}
+
+/* Estilo do botão de histórico */
+button[onclick='verHistoricoClima()'] {
+    background-color: #f8b400; /* Cor quente para o botão de histórico */
+}
+
+button[onclick='verHistoricoClima()']:hover {
+    background-color: #f57c00; /* Laranja intenso */
+}
+
+/* Lista de histórico */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+    font-size: 1.1em;
+}
+
+/* Estilo dos itens da lista */
+ul li {
+    background-color: #ffffff; /* Fundo branco */
+    border: 2px solid #add8e6; /* Bordas suaves */
+    border-radius: 12px;
+    margin: 8px 0;
+    padding: 12px;
+    color: #333; /* Cor escura para o texto */
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* Efeito de hover nos itens da lista */
+ul li:hover {
+    background-color: #add8e6; /* Azul suave */
+    border-color: #3399ff; /* Azul mais intenso nas bordas */
+}
+
+/* Exibição do histórico */
+#dados-historico {
+    display: none; /* Começa oculto */
+    transition: all 0.3s ease;
+}
+
+#dados-historico li {
+    background-color: #f9f9f9;
+    border: 1px solid #cce7ff;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+/* Ícones de clima (opcional) */
+.weather-icon {
+    font-size: 50px;
+    color: #3399ff;
+    margin: 20px 0;
+}
