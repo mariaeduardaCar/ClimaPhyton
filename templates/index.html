@@ -24,7 +24,7 @@
     <script>
         async function consultarClima() {
             const cidade = document.getElementById("cidade").value;
-            const resposta = await fetch(`http://localhost:5000/clima?cidade=${cidade}`);
+            const resposta = await fetch(`https://climatempo-d79400255405.herokuapp.com//clima?cidade=${cidade}`);
             const dados = await resposta.json();
 
             if (dados.erro) {
@@ -39,7 +39,7 @@
         }
 
         async function verHistoricoClima() {
-    const resposta = await fetch('http://localhost:5000/historico');
+    const resposta = await fetch('https://climatempo-d79400255405.herokuapp.com//historico');
     const dados = await resposta.json();
 
     const listaHistorico = document.getElementById("dados-historico");
