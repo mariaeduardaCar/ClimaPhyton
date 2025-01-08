@@ -1,1 +1,1 @@
-gunicorn app:aplicativo
+web: gunicorn app:aplicativo
